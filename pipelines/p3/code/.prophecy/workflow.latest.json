@@ -86,7 +86,13 @@
     "configTopLevelPackage" : "p3",
     "configurationVersion" : "v2"
   },
-  "connections" : [ ],
+  "connections" : [ {
+    "id" : "wyvmOqiDx7GYK7G-qDsGa$$QsbE6vDdgHSg2hI_U3BUI",
+    "source" : "Nu2qeYJlga6y2ef1f_w9o$$3pc0ZbALaxrNoW2m0wAH0",
+    "sourcePort" : "pQk0hIR_3uWlRbKAkNLLQ$$8JTnFn8aM-ldm_bFo8icM",
+    "target" : "Qd1YxyyLNzhO8tmlt_Yuo$$tWmwqe9u7_gsNGgqgnPdo",
+    "targetPort" : "-FbOz7htsXj_0DdUE2TDM$$MEuNVqMQtV9jS8bgkvgJ4"
+  } ],
   "processes" : {
     "Nu2qeYJlga6y2ef1f_w9o$$3pc0ZbALaxrNoW2m0wAH0" : {
       "id" : "Nu2qeYJlga6y2ef1f_w9o$$3pc0ZbALaxrNoW2m0wAH0",
@@ -113,6 +119,56 @@
       },
       "properties" : {
         "datasetId" : "datasets/seed"
+      }
+    },
+    "Qd1YxyyLNzhO8tmlt_Yuo$$tWmwqe9u7_gsNGgqgnPdo" : {
+      "id" : "Qd1YxyyLNzhO8tmlt_Yuo$$tWmwqe9u7_gsNGgqgnPdo",
+      "component" : "newGem",
+      "metadata" : {
+        "label" : "newGem_1",
+        "slug" : "newGem_1",
+        "x" : -160,
+        "y" : -200,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "dataPreview" : false,
+        "showRecordsCount" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "-FbOz7htsXj_0DdUE2TDM$$MEuNVqMQtV9jS8bgkvgJ4",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "id",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "Unique identifier for each record.",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "XxVidXrHYr4MTAMHzM4mY$$fmNeL-HbxZyt_RQe2qfha",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "my_property" : "default value of my property"
+      },
+      "componentInfo" : {
+        "gemId" : "gems/newGem",
+        "projectName" : "PysparkProject"
       }
     }
   },

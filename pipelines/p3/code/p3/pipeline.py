@@ -8,6 +8,7 @@ from p3.graph import *
 
 def pipeline(spark: SparkSession) -> None:
     df_seed = seed(spark)
+    df_newGem_1 = newGem_1(spark, df_seed)
 
 def main():
     spark = SparkSession.builder.enableHiveSupport().appName("p3").getOrCreate()
