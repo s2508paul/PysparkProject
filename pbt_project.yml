@@ -24,6 +24,19 @@ pipelines:
       outputs: []
     subgraphs: []
     dependencies: {}
+  pipelines/p2:
+    name: p2
+    description: ''
+    author: sumitpaul@prophecy.io
+    mode: batch
+    artefactID: ''
+    language: python
+    createdAt: '2026-01-27 07:44:54'
+    datasets:
+      inputs: []
+      outputs: []
+    subgraphs: []
+    dependencies: {}
 datasets: {}
 templates: {}
 jobs: {}
