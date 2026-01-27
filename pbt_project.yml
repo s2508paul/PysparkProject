@@ -37,7 +37,34 @@ pipelines:
       outputs: []
     subgraphs: []
     dependencies: {}
-datasets: {}
+  pipelines/p3:
+    name: p3
+    description: ''
+    author: sumitpaul@prophecy.io
+    mode: batch
+    artefactID: ''
+    language: python
+    createdAt: '2026-01-27 08:02:43'
+    datasets:
+      inputs:
+      - datasets/seed
+      outputs: []
+    subgraphs: []
+    dependencies: {}
+datasets:
+  datasets/seed:
+    name: seed
+    description: ''
+    author: sumitpaul@prophecy.io
+    createdAt: '2026-01-27 08:03:53'
+    mode: batch
+    physicalDatasets:
+      sumit-dev-dbx:
+        fabricId: 3572
+        datasetType: File
+        description: ''
+        author: sumitpaul@prophecy.io
+        createdAt: '2026-01-27 08:03:53'
 templates: {}
 jobs: {}
 gemContainer:
