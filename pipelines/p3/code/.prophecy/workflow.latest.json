@@ -127,8 +127,8 @@
       "metadata" : {
         "label" : "newGem_1",
         "slug" : "newGem_1",
-        "x" : -160,
-        "y" : -200,
+        "x" : -200,
+        "y" : -300,
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
