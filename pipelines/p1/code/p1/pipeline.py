@@ -4,9 +4,12 @@ from pyspark.sql.types import *
 from p1.config.ConfigStore import *
 from p1.functions import *
 from prophecy.utils import *
+from p1.graph import *
 
 def pipeline(spark: SparkSession) -> None:
-    pass
+    df_create_people_dataframe = create_people_dataframe(spark)
+    df_generate_header_line = generate_header_line(spark)
+    df_union_all_dfs = union_all_dfs(spark, df_generate_header_line, df_create_people_dataframe)
 
 def main():
     spark = SparkSession.builder.enableHiveSupport().appName("p1").getOrCreate()

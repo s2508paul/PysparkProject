@@ -26,7 +26,7 @@
       }
     },
     "language" : "python",
-    "fabricId" : "647",
+    "fabricId" : "3572",
     "frontEndLanguage" : "sql",
     "mode" : "batch",
     "udfs" : {
@@ -86,13 +86,185 @@
     "configTopLevelPackage" : "p1",
     "configurationVersion" : "v2"
   },
-  "connections" : [ ],
-  "processes" : { },
+  "connections" : [ {
+    "id" : "9i4sKNQErT1SkNcwdOywH$$l87HBOTtsYpDYNq21lc_U",
+    "source" : "kfA_HKjnGckjXPSnifqWq$$ZsyEQB289Un_TZtb-2hwT",
+    "sourcePort" : "JmcqL_eZxQ9nfwmL2kgT9$$FcFX34BD-eLZvIN_OQDjI",
+    "target" : "TVqWMhj8IFoKkcotJ5lyo$$pDPlqoipDIkVx9JAaopbE",
+    "targetPort" : "yPbtSCX2NhZvYsYShhQqM$$mMTA92iufWQ_nhz3SOfPf"
+  }, {
+    "id" : "bvrbNYxwp5EI0dJnJie5z",
+    "source" : "eAPFqVHmy05AbvrWBXj6w$$DtVPh-cFhTxakzntA5sTw",
+    "sourcePort" : "Baa9LIbqa9EOxCDOC-KmI$$UPsyiVWfPz05rN3AA8UCR",
+    "target" : "TVqWMhj8IFoKkcotJ5lyo$$pDPlqoipDIkVx9JAaopbE",
+    "targetPort" : "2PH7At8n14-aRprPohulf$$RKs-1KNsIou_dEHYIfD7u"
+  } ],
+  "processes" : {
+    "kfA_HKjnGckjXPSnifqWq$$ZsyEQB289Un_TZtb-2hwT" : {
+      "id" : "kfA_HKjnGckjXPSnifqWq$$ZsyEQB289Un_TZtb-2hwT",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "create_people_dataframe",
+        "slug" : "create_people_dataframe",
+        "x" : -600,
+        "y" : -40,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "Creates a list of people with their names and ages for further analysis.",
+        "autoUpdateComment" : true
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "JmcqL_eZxQ9nfwmL2kgT9$$FcFX34BD-eLZvIN_OQDjI",
+          "slug" : "out0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ ]
+          },
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : true,
+        "autoUpdateOnRun" : true
+      },
+      "properties" : {
+        "script" : "from pyspark.sql import SparkSession\n\nspark = SparkSession.builder.getOrCreate()\n\ndata = [\n    (1, \"Alice\", 28),\n    (2, \"Bob\", 30),\n    (3, \"Charlie\", 25),\n    (4, \"David\", 35),\n    (5, \"Eva\", 29)\n]\n\ncolumns = [\"id\", \"name\", \"age\"]\n\ndf = spark.createDataFrame(data, columns)\nout0 = df",
+        "scriptMethodHeader" : "def Script(spark: SparkSession) -> DataFrame:",
+        "scriptMethodFooter" : "    return out0"
+      }
+    },
+    "eAPFqVHmy05AbvrWBXj6w$$DtVPh-cFhTxakzntA5sTw" : {
+      "id" : "eAPFqVHmy05AbvrWBXj6w$$DtVPh-cFhTxakzntA5sTw",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "generate_header_line",
+        "slug" : "generate_header_line",
+        "x" : -600,
+        "y" : -200,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "Creates a standardized header line for reporting or data export purposes.",
+        "autoUpdateComment" : true
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "Baa9LIbqa9EOxCDOC-KmI$$UPsyiVWfPz05rN3AA8UCR",
+          "slug" : "out0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ ]
+          },
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : true,
+        "autoUpdateOnRun" : true
+      },
+      "properties" : {
+        "script" : "header_line = f'\"1\"¬\"BCDU_INTERFACE\"¬\"'\n##trailer_line = f'\"9\"¬\"{total_count}\"'\n\nheader_df = spark.createDataFrame([Row(line=header_line)])\n##trailer_df = spark.createDataFrame([Row(line=trailer_line)])",
+        "scriptMethodHeader" : "def Script(spark: SparkSession) -> DataFrame:",
+        "scriptMethodFooter" : "    return out0"
+      }
+    },
+    "TVqWMhj8IFoKkcotJ5lyo$$pDPlqoipDIkVx9JAaopbE" : {
+      "id" : "TVqWMhj8IFoKkcotJ5lyo$$pDPlqoipDIkVx9JAaopbE",
+      "component" : "SetOperation",
+      "metadata" : {
+        "label" : "union_all_dfs",
+        "slug" : "union_all_dfs",
+        "x" : -360,
+        "y" : -120,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "Combines multiple datasets into a single view, ensuring all available information is included even if some details are missing.",
+        "autoUpdateComment" : true,
+        "dataPreview" : false,
+        "showRecordsCount" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "2PH7At8n14-aRprPohulf$$RKs-1KNsIou_dEHYIfD7u",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ ]
+          },
+          "isStreaming" : false
+        }, {
+          "id" : "yPbtSCX2NhZvYsYShhQqM$$mMTA92iufWQ_nhz3SOfPf",
+          "slug" : "in1",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "MiM1xTfnfsbL8GcE3Mio8$$Ib7nxAgiuxObAAdsRgAlW",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "operationType" : "unionByName",
+        "allowMissingColumns" : true
+      },
+      "componentInfo" : {
+        "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.54&projectSubscriptionProjectId=12654&path=gems/SetOperation",
+        "projectName" : "ProphecySparkBasicsPython"
+      }
+    }
+  },
   "ports" : {
     "inputs" : [ ],
     "outputs" : [ ],
     "selectedInputFields" : [ ],
     "isCustomOutputSchema" : false,
     "autoUpdateOnRun" : false
-  }
+  },
+  "diagnostics" : [ {
+    "property" : "$.workflow.processes.kfA_HKjnGckjXPSnifqWq$$ZsyEQB289Un_TZtb-2hwT.ports.outputs",
+    "range" : {
+      "start" : {
+        "line" : 0,
+        "character" : 0
+      },
+      "end" : {
+        "line" : 0,
+        "character" : 0
+      }
+    },
+    "severity" : 3,
+    "message" : "Please infer output schema from the cluster as described [here](https://docs.prophecy.io/low-code-spark/gems/custom/script/)",
+    "tags" : [ ],
+    "relatedInformation" : [ ],
+    "diagnosticType" : 2
+  }, {
+    "property" : "$.workflow.processes.eAPFqVHmy05AbvrWBXj6w$$DtVPh-cFhTxakzntA5sTw.ports.outputs",
+    "range" : {
+      "start" : {
+        "line" : 0,
+        "character" : 0
+      },
+      "end" : {
+        "line" : 0,
+        "character" : 0
+      }
+    },
+    "severity" : 3,
+    "message" : "Please infer output schema from the cluster as described [here](https://docs.prophecy.io/low-code-spark/gems/custom/script/)",
+    "tags" : [ ],
+    "relatedInformation" : [ ],
+    "diagnosticType" : 2
+  } ]
 }

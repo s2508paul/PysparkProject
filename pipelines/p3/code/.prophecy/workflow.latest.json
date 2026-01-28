@@ -100,8 +100,8 @@
       "metadata" : {
         "label" : "seed",
         "slug" : "seed",
-        "x" : -380,
-        "y" : -200,
+        "x" : -620,
+        "y" : -460,
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
@@ -127,8 +127,8 @@
       "metadata" : {
         "label" : "newGem_1",
         "slug" : "newGem_1",
-        "x" : -200,
-        "y" : -300,
+        "x" : -360,
+        "y" : -460,
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
